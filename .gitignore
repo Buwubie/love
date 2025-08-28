@@ -1,3 +1,6 @@
+# local editor ignores
+./build
+
 # automake products
 /config.h
 /config.h.in
