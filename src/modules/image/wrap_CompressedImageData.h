@@ -22,18 +22,16 @@
 #define LOVE_IMAGE_WRAP_COMRESSED_IMAGE_DATA_H
 
 // LOVE
-#include "common/runtime.h"
 #include "CompressedImageData.h"
+#include "common/runtime.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
 CompressedImageData *luax_checkcompressedimagedata(lua_State *L, int idx);
 extern "C" int luaopen_compressedimagedata(lua_State *L);
 
-} // image
-} // love
+}  // namespace image
+}  // namespace love
 
-#endif // LOVE_IMAGE_WRAP_COMRESSED_IMAGE_DATA_H
+#endif  // LOVE_IMAGE_WRAP_COMRESSED_IMAGE_DATA_H

@@ -24,36 +24,31 @@
 #include "common/Data.h"
 #include "common/pixelformat.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
-class ImageDataBase : public Data
-{
-public:
+class ImageDataBase : public Data {
+ public:
+  virtual ~ImageDataBase() {}
 
-	virtual ~ImageDataBase() {}
+  PixelFormat getFormat() const;
 
-	PixelFormat getFormat() const;
+  int getWidth() const;
+  int getHeight() const;
 
-	int getWidth() const;
-	int getHeight() const;
+  void setLinear(bool linear);
+  bool isLinear() const;
 
-	void setLinear(bool linear);
-	bool isLinear() const;
+ protected:
+  ImageDataBase(PixelFormat format, int width, int height);
 
-protected:
+  PixelFormat format;
+  int width;
+  int height;
 
-	ImageDataBase(PixelFormat format, int width, int height);
+  bool linear;
 
-	PixelFormat format;
-	int width;
-	int height;
+};  // ImageDataBase
 
-	bool linear;
-
-}; // ImageDataBase
-
-} // image
-} // love
+}  // namespace image
+}  // namespace love

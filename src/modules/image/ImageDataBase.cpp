@@ -20,43 +20,21 @@
 
 #include "ImageDataBase.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
 ImageDataBase::ImageDataBase(PixelFormat format, int width, int height)
-	: format(format)
-	, width(width)
-	, height(height)
-	, linear(false)
-{
-}
+    : format(format), width(width), height(height), linear(false) {}
 
-PixelFormat ImageDataBase::getFormat() const
-{
-	return format;
-}
+PixelFormat ImageDataBase::getFormat() const { return format; }
 
-int ImageDataBase::getWidth() const
-{
-	return width;
-}
+int ImageDataBase::getWidth() const { return width; }
 
-int ImageDataBase::getHeight() const
-{
-	return height;
-}
+int ImageDataBase::getHeight() const { return height; }
 
-void ImageDataBase::setLinear(bool linear)
-{
-	this->linear = linear;
-}
+void ImageDataBase::setLinear(bool linear) { this->linear = linear; }
 
-bool ImageDataBase::isLinear() const
-{
-	return linear;
-}
+bool ImageDataBase::isLinear() const { return linear; }
 
-} // image
-} // love
+}  // namespace image
+}  // namespace love

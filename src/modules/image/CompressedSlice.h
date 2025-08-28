@@ -21,40 +21,36 @@
 #pragma once
 
 // LOVE
+#include "ImageDataBase.h"
 #include "common/int.h"
 #include "common/pixelformat.h"
 #include "data/ByteData.h"
-#include "ImageDataBase.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
 using ByteData = love::data::ByteData;
 
 // Compressed image data can have multiple mipmap levels, each represented by a
 // sub-image.
-class CompressedSlice : public ImageDataBase
-{
-public:
+class CompressedSlice : public ImageDataBase {
+ public:
+  CompressedSlice(PixelFormat format, int width, int height, ByteData *memory,
+                  size_t offset, size_t size);
+  CompressedSlice(const CompressedSlice &slice);
+  virtual ~CompressedSlice();
 
-	CompressedSlice(PixelFormat format, int width, int height, ByteData *memory, size_t offset, size_t size);
-	CompressedSlice(const CompressedSlice &slice);
-	virtual ~CompressedSlice();
+  CompressedSlice *clone() const override;
+  void *getData() const override { return (uint8 *)memory->getData() + offset; }
+  size_t getSize() const override { return dataSize; }
+  size_t getOffset() const { return offset; }
 
-	CompressedSlice *clone() const override;
-	void *getData() const override { return (uint8 *) memory->getData() + offset; }
-	size_t getSize() const override { return dataSize; }
-	size_t getOffset() const { return offset; }
+ private:
+  StrongRef<ByteData> memory;
+  size_t offset;
+  size_t dataSize;
 
-private:
+};  // CompressedSlice
 
-	StrongRef<ByteData> memory;
-	size_t offset;
-	size_t dataSize;
-
-}; // CompressedSlice
-
-} // image
-} // love
+}  // namespace image
+}  // namespace love

@@ -23,17 +23,15 @@
 
 // LOVE
 #include "Image.h"
-#include "wrap_ImageData.h"
 #include "wrap_CompressedImageData.h"
+#include "wrap_ImageData.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
 extern "C" LOVE_EXPORT int luaopen_love_image(lua_State *L);
 
-} // image
-} // love
+}  // namespace image
+}  // namespace love
 
-#endif // LOVE_IMAGE_WRAP_IMAGE_H
+#endif  // LOVE_IMAGE_WRAP_IMAGE_H

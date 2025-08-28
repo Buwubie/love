@@ -22,18 +22,16 @@
 #define LOVE_IMAGE_WRAP_IMAGE_DATA_H
 
 // LOVE
-#include "common/runtime.h"
 #include "ImageData.h"
+#include "common/runtime.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
 ImageData *luax_checkimagedata(lua_State *L, int idx);
 extern "C" int luaopen_imagedata(lua_State *L);
 
-} // image
-} // love
+}  // namespace image
+}  // namespace love
 
-#endif // LOVE_IMAGE_WRAP_IMAGE_DATA_H
+#endif  // LOVE_IMAGE_WRAP_IMAGE_DATA_H

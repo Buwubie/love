@@ -19,37 +19,30 @@
  **/
 
 #include "CompressedSlice.h"
+
 #include "common/Exception.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
-CompressedSlice::CompressedSlice(PixelFormat format, int width, int height, ByteData *memory, size_t offset, size_t size)
-	: ImageDataBase(format, width, height)
-	, memory(memory)
-	, offset(offset)
-	, dataSize(size)
-{
-}
+CompressedSlice::CompressedSlice(PixelFormat format, int width, int height,
+                                 ByteData *memory, size_t offset, size_t size)
+    : ImageDataBase(format, width, height),
+      memory(memory),
+      offset(offset),
+      dataSize(size) {}
 
 CompressedSlice::CompressedSlice(const CompressedSlice &s)
-	: ImageDataBase(s.getFormat(), s.getWidth(), s.getHeight())
-	, memory(s.memory)
-	, offset(s.offset)
-	, dataSize(s.dataSize)
-{
+    : ImageDataBase(s.getFormat(), s.getWidth(), s.getHeight()),
+      memory(s.memory),
+      offset(s.offset),
+      dataSize(s.dataSize) {}
+
+CompressedSlice::~CompressedSlice() {}
+
+CompressedSlice *CompressedSlice::clone() const {
+  return new CompressedSlice(*this);
 }
 
-CompressedSlice::~CompressedSlice()
-{
-}
-
-CompressedSlice *CompressedSlice::clone() const
-{
-	return new CompressedSlice(*this);
-}
-
-} // image
-} // love
+}  // namespace image
+}  // namespace love

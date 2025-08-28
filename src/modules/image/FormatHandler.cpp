@@ -20,60 +20,46 @@
 
 // LOVE
 #include "FormatHandler.h"
+
 #include "common/Exception.h"
 
-namespace love
-{
-namespace image
-{
+namespace love {
+namespace image {
 
-FormatHandler::FormatHandler()
-{
+FormatHandler::FormatHandler() {}
+
+FormatHandler::~FormatHandler() {}
+
+bool FormatHandler::canDecode(Data* /*data*/) { return false; }
+
+bool FormatHandler::canEncode(PixelFormat /*rawFormat*/,
+                              EncodedFormat /*encodedFormat*/) {
+  return false;
 }
 
-FormatHandler::~FormatHandler()
-{
+FormatHandler::DecodedImage FormatHandler::decode(Data* /*data*/) {
+  throw love::Exception(
+      "Image decoding is not implemented for this format backend.");
 }
 
-bool FormatHandler::canDecode(Data* /*data*/)
-{
-	return false;
+FormatHandler::EncodedImage FormatHandler::encode(const DecodedImage& /*img*/,
+                                                  EncodedFormat /*format*/) {
+  throw love::Exception(
+      "Image encoding is not implemented for this format backend.");
 }
 
-bool FormatHandler::canEncode(PixelFormat /*rawFormat*/, EncodedFormat /*encodedFormat*/)
-{
-	return false;
+bool FormatHandler::canParseCompressed(Data* /*data*/) { return false; }
+
+StrongRef<ByteData> FormatHandler::parseCompressed(
+    Data* /*filedata*/, std::vector<StrongRef<CompressedSlice>>& /*images*/,
+    PixelFormat& /*format*/) {
+  throw love::Exception(
+      "Compressed image parsing is not implemented for this format backend.");
 }
 
-FormatHandler::DecodedImage FormatHandler::decode(Data* /*data*/)
-{
-	throw love::Exception("Image decoding is not implemented for this format backend.");
-}
+void FormatHandler::freeRawPixels(unsigned char* mem) { delete[] mem; }
 
-FormatHandler::EncodedImage FormatHandler::encode(const DecodedImage& /*img*/, EncodedFormat /*format*/)
-{
-	throw love::Exception("Image encoding is not implemented for this format backend.");
-}
+void FormatHandler::freeEncodedImage(unsigned char* mem) { delete[] mem; }
 
-bool FormatHandler::canParseCompressed(Data* /*data*/)
-{
-	return false;
-}
-
-StrongRef<ByteData> FormatHandler::parseCompressed(Data* /*filedata*/, std::vector<StrongRef<CompressedSlice>>& /*images*/, PixelFormat& /*format*/)
-{
-	throw love::Exception("Compressed image parsing is not implemented for this format backend.");
-}
-
-void FormatHandler::freeRawPixels(unsigned char *mem)
-{
-	delete[] mem;
-}
-
-void FormatHandler::freeEncodedImage(unsigned char *mem)
-{
-	delete[] mem;
-}
-
-} // image
-} // love
+}  // namespace image
+}  // namespace love
